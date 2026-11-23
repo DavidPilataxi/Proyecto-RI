@@ -20,7 +20,7 @@ Los modelos clásicos comparten un índice invertido y el mismo preprocesamiento
 
 ## Ejecutar en local
 
-Usa Python 3.12. Desde PowerShell:
+Usa Python 3.12. Desde la terminal:
 
 ```powershell
 git clone https://github.com/DavidPilataxi/Proyecto-RI.git
@@ -28,9 +28,7 @@ Set-Location Proyecto-RI
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m streamlit run app.py
-```
-
-En Linux o macOS, crea el entorno con `python3.12 -m venv .venv` y usa `.venv/bin/python` en los dos últimos comandos. Abre la URL local que imprima Streamlit. La primera ejecución puede requerir Internet para descargar las *stopwords* de NLTK y el modelo preentrenado.
+``
 
 ## Datos y artefactos
 
@@ -53,7 +51,7 @@ python scripts/build_all.py
 python scripts/build_embeddings.py
 ```
 
-La reconstrucción vuelve a generar los índices y las métricas. La creación de embeddings para el corpus completo tardó unos 55 minutos en CPU según el registro del proyecto. Para la ejecución normal se usan los artefactos versionados.
+La reconstrucción vuelve a generar los índices y las métricas. La creación de embeddings para el corpus completo tardó unos 55 minutos en CPU según el registro del proyecto.
 
 ## Despliegue
 
@@ -72,8 +70,4 @@ Se usaron 648 consultas de la partición de prueba de [FiQA qrels](https://huggi
 
 Embeddings obtuvo el mayor promedio en las tres métricas. Los resultados por consulta muestran excepciones. Con la consulta **2076**, sobre deducciones fiscales por gastos veterinarios en Canadá, recuperó ambos relevantes en los dos primeros puestos (AP@100 = 1,0000), mientras BM25 obtuvo 0,0000. Con la consulta **5155**, sobre dos alternativas de pago de un seguro, BM25 ubicó el único relevante primero (AP@100 = 1,0000), mientras Embeddings obtuvo 0,0000.
 
-## Prueba rápida para la defensa
 
-1. Abre la URL y selecciona la consulta **2076** en el selector con qrels.
-2. Con top‑n = 10, abre **Comparar modelos**, revisa los cuatro rankings y expande un resultado.
-3. Repite con la consulta **5155** y revisa **Métricas** para comparar ambos casos.
